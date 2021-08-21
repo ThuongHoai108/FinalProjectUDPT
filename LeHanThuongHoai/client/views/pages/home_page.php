@@ -140,14 +140,33 @@
 
     <div class="col-3">
         <div class="p-3 border bg-light">
-            <form action="#" class="login" method="POST">
+        <?php
+        //tiến hành kiểm tra là người dùng đã đăng nhập hay chưa
+        if (isset($_SESSION['isLogin'])) {
+        ?>
+            <form action="<?php echo HEADERLINK.'/home/logout' ?>" >
+                <div class="row g-3 align-items-center">
+                <br> 
+                    <div class="col-8" style="font-size: 24px;">
+                        <div>Chào <?php echo " " .$_SESSION['username']?>!</div>
+                    </div>
+                    <div class="col-4">
+                        <button type="submit" class="btn btn" name="btn-login">Thoát</button>
+                    </div>
+                  </div><br>              
+            </form>  
+            
+        <?php
+        }else {
+        ?>
+            <form action="<?php echo HEADERLINK.'/home/handleLogin' ?>" class="login" method="POST">
                 <button type="button" class="list-group-item list-group-item-action active" style="color: black; background-color: #7b7163; border-color: #9bb555;"aria-current="true" >ĐĂNG NHẬP</button><br>
                 <div class="row g-3 align-items-center">
                     <div class="col-6" style="font-size: 14px;">
                       <label for="username" class="col-form-label">Tên đăng nhập</label>
                     </div>
                     <div class="col-6">
-                      <input type="text" id="username" class="form-control" aria-describedby="usernameHelpInline">
+                      <input type="text" name="username" id="username" class="form-control" aria-describedby="usernameHelpInline">
                     </div>
                   </div><br>
                   <div class="row g-3 align-items-center">
@@ -155,17 +174,21 @@
                       <label for="password" class="col-form-label">Mật khẩu</label>
                     </div>
                     <div class="col-6">
-                      <input type="password" id="password" class="form-control" aria-describedby="passwordHelpInline">
+                      <input type="password" name="password" id="password" class="form-control" aria-describedby="passwordHelpInline">
                     </div>
                   </div><br>
                   <div class="row g-3 align-items-center">
                     <div class="col-6">
                     </div>
                     <div class="col-6" >
-                        <button type="submit" class="btn btn">Đăng nhập</button>
+                        <button type="submit" class="btn btn" name="btn-login">Đăng nhập</button>
                     </div>
                   </div>
             </form>  
+            <?php
+            }
+            ?>
+
         </div>
         <div class="p-3 border bg-light">
             <div class="list-group">
